@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ollama legned of legend</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto; margin: 40px; }
+    .box { max-width: 800px; margin: 0 auto; }
+    textarea { width: 100%; height: 180px; padding: 12px; font-size: 16px; }
+    select, button { padding: 10px 14px; font-size: 15px; }
+    .row { display: flex; gap: 10px; align-items: center; margin: 10px 0; flex-wrap: wrap; }
+    .result { white-space: pre-wrap; background: #f7f7f8; padding: 16px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <form method="post">
+      <label for="prompt"><b>프롬프트</b></label><br/>
+      <textarea id="prompt" name="prompt" placeholder="형 조현우인데 이거 fastapi code로 다 고쳤다 힘들다.">{{ user_prompt or "" }}</textarea>
+      <div class="row">
+        <label for="style">응답 스타일:</label>
+        <select id="style" name="style">
+          <option value="공손하고 간결하게">공손하고 간결하게</option>
+          <option value="예시와 함께">예시와 함께</option>
+          <option value="단계별로">단계별로</option>
+          <option value="기술적으로 상세하게">기술적으로 상세하게</option>
+          <option value="나쁘게">나쁘게</option>
+          <option value="짜증나게">짜증나게</option>
+        </select>
+
+        <button type="submit">제출</button>
+      </div>
+    </form>
+
+    {% if response_text %}
+      <h2>결과</h2>
+      <div class="result">{{ response_text }}</div>
+    {% endif %}
+
+    <hr/>
+  </div>
+</body>
+</html>
